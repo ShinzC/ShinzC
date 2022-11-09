@@ -1,0 +1,154 @@
+package bankoprolukas;
+
+import java.util.Scanner;
+
+public class BankoProLukas {
+
+    public static void main(String[] args) {
+       Scanner leer = new Scanner(System.in);
+        String usuario = "Lukas@gmail.com";
+        String user = " ";
+        int clave;
+        int pass = 1234;
+        int contador;
+        boolean usuarioCorrecto = false;
+        boolean claveCorrecta = false; 
+        int opcion = 0;
+        int totalSaldo = 1000000;
+        int giroDinero = 0;
+        int saldoInicial = 0;
+        int veinteMil = 0 ;
+        int diezMil = 0 ;
+        int cincoMil = 0;
+        int dosMil = 0 ;
+        int unMil = 0 ;
+       
+        do{
+          contador = 0;
+            do {
+           
+                System.out.println("=====LOGIN=====");
+                System.out.println("Ingrese nombre de cuenta");
+                user = leer.nextLine();
+                if (usuario.equals(user)) {
+                    System.out.println("Usuario correcto ");
+                    contador = 3;
+
+                } else {
+                    System.out.println("Usuario incorrecto 0" + contador);
+                    contador = contador + 1;
+
+                }
+            } while (contador !=3 );
+                 contador = 0;
+            do {
+                System.out.println("Ingrese su contraseña");
+                clave = leer.nextInt();
+                if (pass == clave) {
+                    System.out.println("Contraseña correcto");
+                    contador = 3;
+                }else{
+                    System.out.println("Contraseña incorrecto" + contador); 
+                 contador = contador + 1;
+
+                }
+            } while (contador !=3 );  
+        } while ((claveCorrecta = false) && (usuarioCorrecto = false));
+       
+       
+        do {
+            do {
+            System.out.println("======MENU BANCO======\n"
+            +"1_Consultar saldo \n"
+            +"2_Girar dinero\n"
+            +"3_Depositar dinero\n"        
+            +"4_Cambiar clave\n"        
+            +"5_Salir");
+            opcion = leer.nextInt();
+            } while ((opcion < 1) || (opcion  > 5)) ;    
+            switch (opcion) {
+                case 1:
+                    System.out.println("su saldo es "+totalSaldo);
+                    break;
+                case 2:
+                    do {
+                        System.out.println("ingrese el monto que desea girar\n"
+                        + "el giro minimo es de 10.000\n"
+                        + "el giro maximo es de 200.000\n");
+                        giroDinero = leer.nextInt();
+                    } while ((giroDinero <1000) || (giroDinero > 200000));  
+                    totalSaldo = totalSaldo - giroDinero;
+                    if (giroDinero >= 20000) {
+                        veinteMil = giroDinero / 20000 ;
+                        giroDinero = giroDinero - (veinteMil * 20000);
+                        
+                        System.out.println("la cantidad de billetes es de 20000 " + veinteMil);
+                    }      
+                    if (giroDinero >=10000) {
+                        diezMil = giroDinero / 10000;
+                        giroDinero = giroDinero - (diezMil * 10000);
+                        System.out.println("la cantidad de billete es de 10000 "+ diezMil );
+                    }        
+                    if (giroDinero >= 5000) {
+                        cincoMil = giroDinero / 5000;
+                        giroDinero = giroDinero - (cincoMil * 5000);
+                        System.out.println("la cantidad de billete es de 5000 "+ cincoMil );
+                    }
+                    if (giroDinero >= 2000) {
+                        dosMil = giroDinero / 2000;
+                        giroDinero = giroDinero - (dosMil * 2000);
+                        System.out.println("la cantidad de billetes es de 2000 "+ dosMil);
+                    }    
+                     if (giroDinero >= 1000) {
+                        unMil = giroDinero / 1000;
+                        giroDinero = giroDinero - (unMil * 1000);
+                        System.out.println("la cantidad de billetes es de 1000 " + unMil);
+                    }
+                     System.out.println("Su saldo es " + totalSaldo);
+                     if (veinteMil > 0) {
+                         System.out.println("Billetes de $ 20.000 = " + veinteMil);
+                    }
+                     if (diezMil  > 0) {
+                        System.out.println("Billetes de $ 10.000 = " +  diezMil);
+                    }
+                     if (cincoMil > 0) {
+                         System.out.println("Billetes de $ 5000 = " + cincoMil);
+                    }
+                     if (dosMil  > 0 ) {
+                         System.out.println("Billetes de $ 2000 = " + dosMil);
+                    }
+                     if (unMil > 0 )   {
+                         System.out.println("Billetes de $ 1000 =" + unMil);                       
+                    }
+                        break;
+                case 3:
+                    System.out.println("ingrese el monto que desea depositar");
+                    int depositoSaldo = leer.nextInt();
+                    if (depositoSaldo <= 200000) {
+                        totalSaldo = totalSaldo + depositoSaldo;
+                        System.out.println("nuevo saldo es : " + totalSaldo);
+                    }else{
+                        System.out.println("monto invalido su maximo monto es de 200000");
+                    }
+                    break;     
+                case 4:
+                    System.out.println("Ingrese su nueva contraseña pero (debe tener minimo 4 digitos)");
+                        int contraNueva = leer.nextInt();
+                        pass = contraNueva;
+                        System.out.println("Su clave ha sido cambiada correctamente");
+                    break;
+                                       
+                case 5:
+                    System.out.println("Muchas gracias por su atencion tenga un lindo dia");
+                    break;
+                    default:
+                throw new AssertionError();
+            }
+        } while (opcion != 5);
+      
+      
+        
+        
+        }
+    
+}
